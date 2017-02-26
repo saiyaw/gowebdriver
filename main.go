@@ -7,6 +7,10 @@ import (
 )
 
 func main() {
+	username := "user"
+	password := "pass"
+	website := "web"
+
 	driver := agouti.ChromeDriver()
 	if err := driver.Start(); err != nil {
 		log.Fatalf("Failed to start driver : %v", err)
@@ -18,7 +22,7 @@ func main() {
 		log.Fatalf("failed to open page : %v", err)
 	}
 
-	err = page.Navigate("http://www.jd.com")
+	err = page.Navigate(website)
 	if err != nil {
 		log.Fatalf("failed to navigate the site : %v", err)
 	}
@@ -42,10 +46,10 @@ func main() {
 	time.Sleep(time.Second * 5)
 
 	userNameEntry := page.FindByID("loginname")
-	userNameEntry.SendKeys("gray_king@163.com")
+	userNameEntry.SendKeys(username)
 
 	userPassEntry := page.FindByID("nloginpwd")
-	userPassEntry.SendKeys("wang123456")
+	userPassEntry.SendKeys(password)
 
 	loginSubmit := page.FindByID("loginsubmit")
 	loginSubmit.Click()
